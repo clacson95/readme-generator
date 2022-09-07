@@ -5,33 +5,22 @@ const fs = require("fs");
 // Generating current year for license
 const year = new Date().getFullYear();
 
-// Include inquirer prompt "names" to perform substitutions in template literal
-// Content of the README file
-const generateMD = ({ title, describe, install, usage, github, email, phone }) =>
-`#${title}  ${}
-
-## Description
-${describe}
-
-## Table of Contents
-- [Installation](#installation)
-
-## Installation
-${install}
-
-## Usage
-${usage}
-
-## License
-${licenseText}
-
-
-
-`;
+// License badges
+const licenseBadge = ({ license }) => {
+    if (license === "Apache License v2.0") {
+        return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+    } else if (license === "GNU General Public License v3.0") {
+        return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+    } else if (license === "MIT License") {
+        return `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+    } else {
+        return "";
+    }
+}
 
 // Content of the license notice, depending on what license was selected 
 const licenseText = ({ year, name, describe }) => {
-    if (license === "Apache License v2.0"){
+    if (license === "Apache License v2.0") {
         return `
     Copyright ${year} ${name}
 
@@ -39,7 +28,7 @@ const licenseText = ({ year, name, describe }) => {
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-        [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+        [http://www.apache.org/licenses/LICENSE-2.0]
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
@@ -47,7 +36,7 @@ const licenseText = ({ year, name, describe }) => {
     See the License for the specific language governing permissions and
     limitations under the License.`
 
-    } else if (license === "GNU General Public License v3.0"){
+    } else if (license === "GNU General Public License v3.0") {
         return `
     ${describe}
     Copyright (C) ${year}  ${name}
@@ -63,8 +52,8 @@ const licenseText = ({ year, name, describe }) => {
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).`
-    } else if (license === "MIT License"){
+    along with this program.  If not, see [https://www.gnu.org/licenses/].`
+    } else if (license === "MIT License") {
         return `
     Copyright ${year} ${name}
 
@@ -86,24 +75,85 @@ const licenseText = ({ year, name, describe }) => {
     CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`
-    } else if (license === "none"){
+    } else if (license === "none") {
         return `
     There has not been any license selected for this project.`
     }
 }
+
+const anyTests = ({ test, testYes }) => {
+    if (test === "Yes") {
+        return testYes;
+    } else if (test === "No") {
+        return "No tests have been developed for this application.";
+    }
+}
+
+// Include inquirer prompt "names" to perform substitutions in template literal
+// Content of the README file
+const generateMD = ({ title, describe, install, usage, licenseBadge, licenseText, anyTests, contribute, github, email }) =>
+`#${title}  ${licenseBadge}
+
+## Description
+${describe}
+
+## Table of Contents
+* [Installation](#installation)
+* [Usage](#usage)
+* [License](#license)
+* [How to Contribute](#how-to=contribute)
+* [Questions](#questions)
+
+## Installation
+${install}
+
+## Usage
+${usage}
+
+## License
+${licenseText}
+
+## How to Contribute
+${contribute}
+
+## Testing
+${anyTests}
+
+## Questions
+If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.
+${email}
+${github}
+`;
+
 
 // Requesting user input with inquirer
 inquirer 
 	.prompt([
     {
         type: "input",
-        message: "What is your full name?",
+        message: "What is your full name?*",
         name: "name",
+        validate: function(name) {
+            if (name) {
+                return true;
+            } else {
+                console.log("Your full name is required.")
+                return false;
+            }
+        }
     },
     {
 		type: "input",
 		message: "What is the title of your project, or the name of your repository?",
 		name: "title",
+        validate: function(title) {
+            if (title) {
+                return true;
+            } else {
+                console.log("A title for your project is required.")
+                return false;
+            }
+        }
 	},
 	{
 		type: "input",
@@ -131,7 +181,21 @@ inquirer
     {
 		type: "input",
         message: "How can others contribute to the code?",
-        name: "phone",
+        name: "contribute",
+    },
+    {
+		type: "list",
+        message: "Do you have any tests that you would like to include for your program?",
+        name: "test",
+        choices: [
+            "Yes", "No",
+        ],
+    },
+    {
+		type: "input",
+        message: "What tests are included in your application, and what are examples on how to run them?",
+        name: "testYes",
+        when: (answers) => answers.test === "Yes"
     },
     {
 		type: "input",
