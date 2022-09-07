@@ -23,7 +23,7 @@ Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 
-    [http://www.apache.org/licenses/LICENSE-2.0]
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software
 distributed under the License is distributed on an "AS IS" BASIS,
@@ -38,6 +38,6 @@ Others can contribute to this code by forking the repository and making changes 
 undefined
 
 ## Questions
-If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.
-caleb.lacson@gmail.com
-github.com/clacson95
+If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.   
+caleb.lacson@gmail.com    
+[github.com/clacson95](github.com/clacson95)
