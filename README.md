@@ -7,14 +7,14 @@ This is a simple command-line application to generate a README file with the int
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
-* [How to Contribute](#how-to=contribute)
+* [How to Contribute](#how-to-contribute)
 * [Questions](#questions)
 
 ## Installation
 To install this program, simply clone the repository from GitHub
 
 ## Usage
-type in `node index.js` into the terminal and answer the following prompts. The README.md file will then be created.
+Type in `node index.js` into the terminal and answer the following prompts. The README.md file will then be created.
 
 ## License
 Copyright 2022 Caleb Lacson
@@ -35,7 +35,7 @@ limitations under the License.`
 Others can contribute to this code by forking the repository and making changes accordingly. Feel free to submit a pull request if you have made additions others will find helpful.
 
 ## Testing
-undefined
+No tests have been developed for this application.  
 
 ## Questions
 If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.   
