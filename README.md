@@ -1,7 +1,7 @@
 # readme-generator  [![License: Apache](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Description
-This is a simple command-line application to generate a README file with the intent of saving time on future projects, and avoiding spending unnecessary time.
+This is a simple command-line application to generate a README file with the intent of saving time on future projects.
 
 ## Table of Contents
 * [Installation](#installation)
