@@ -11,7 +11,9 @@ This is a simple command-line application that generates README files. The motiv
 * [Questions](#questions)
 
 ## Installation
-First, ensure `node.js` is installed. Second, ensure there is a `.gitignore` file (with `node_modules` and `.DS_Store` written inside) before installing any npm dependencies. Third, ensure your repository includes a `package.json` file. Create one by entering the `npm i -y` command in the terminal. Fourth, ensure the inquirer module is installed, using `npm i inquirer@^8.2.4` command in the terminal.
+First, clone this repository by entering `git clone git@github.com:clacson95/readme-generator.git` into the terminal. 
+
+Second, ensure `node.js` is installed. Third, ensure there is a `.gitignore` file (with `node_modules` and `.DS_Store` written inside) before installing any npm dependencies. Fourth, ensure your repository includes a `package.json` file. Create one by entering the `npm i -y` command in the terminal. Lastly, ensure the inquirer module is installed, using `npm i inquirer@^8.2.4` command in the terminal.
 
 ## Usage
 Use the command `node index.js` to run the file and begin answering the prompts.
