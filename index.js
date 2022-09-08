@@ -93,7 +93,7 @@ ${describe}
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
-* [How to Contribute](#how-to=contribute)
+* [How to Contribute](#how-to-contribute)
 * [Questions](#questions)
 
 ## Installation
@@ -112,7 +112,7 @@ ${contribute}
 ${test}
 
 ## Questions
-If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.
+If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.\n
 [${email}](${email})\n  
 [${github}](${github})
 `;
