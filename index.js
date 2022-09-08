@@ -6,9 +6,9 @@ const fs = require("fs");
 const year = new Date().getFullYear();
 
 // License badges
-const licenseBadge = ({ license }) => {
+const licenseBadge = (license) => {
     if (license === "Apache License v2.0") {
-        return `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+        return `[![License: Apache](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
     } else if (license === "GNU General Public License v3.0") {
         return `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
     } else if (license === "MIT License") {
@@ -19,7 +19,7 @@ const licenseBadge = ({ license }) => {
 }
 
 // Content of the license notice, depending on what license was selected 
-const licenseText = ({ year, name, describe }) => {
+const licenseText = ( year, name, license, describe ) => {
     if (license === "Apache License v2.0") {
         return `
     Copyright ${year} ${name}
@@ -81,18 +81,10 @@ const licenseText = ({ year, name, describe }) => {
     }
 }
 
-const anyTests = ({ test, testYes }) => {
-    if (test === "Yes") {
-        return testYes;
-    } else if (test === "No") {
-        return "No tests have been developed for this application.";
-    }
-}
-
 // Include inquirer prompt "names" to perform substitutions in template literal
 // Content of the README file
-const generateMD = ({ title, describe, install, usage, licenseBadge, licenseText, anyTests, contribute, github, email }) =>
-`#${title}  ${licenseBadge}
+const generateMD = ({ year, name, license, title, test, describe, install, usage, contribute, github, email }) =>
+`# ${title}  ${licenseBadge(license)}
 
 ## Description
 ${describe}
@@ -111,20 +103,19 @@ ${install}
 ${usage}
 
 ## License
-${licenseText}
+${licenseText(year, name, license, describe)}
 
 ## How to Contribute
 ${contribute}
 
 ## Testing
-${anyTests}
+${test}
 
 ## Questions
 If you have any questions regarding this project, or anything else regarding my work, please reach out to me via email or GitHub.
-${email}
-${github}
+[${email}](${email})\n  
+[${github}](${github})
 `;
-
 
 // Requesting user input with inquirer
 inquirer 
@@ -144,7 +135,7 @@ inquirer
     },
     {
 		type: "input",
-		message: "What is the title of your project, or the name of your repository?",
+		message: "What is the title of your project, or the name of your repository?*",
 		name: "title",
         validate: function(title) {
             if (title) {
@@ -157,12 +148,12 @@ inquirer
 	},
 	{
 		type: "input",
-		message: "How would you describe your project? (What was your motivation? What problem does it solve? What did you learn?",
+		message: "How would you describe your project? (What was your motivation? What problem does it solve? What did you learn?)",
 		name: "describe",
 	},
 	{
 		type: "input",
-        message: "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.?",
+        message: "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running?",
         name: "install",
     },
     {
@@ -171,7 +162,7 @@ inquirer
         name: "usage",
     },
     {
-		type: "checkbox",
+		type: "list",
         message: "What license would you like to choose for your project? A license tells others what they can and cannot do with your code.",
         name: "license",
         choices: [
@@ -184,18 +175,9 @@ inquirer
         name: "contribute",
     },
     {
-		type: "list",
-        message: "Do you have any tests that you would like to include for your program?",
-        name: "test",
-        choices: [
-            "Yes", "No",
-        ],
-    },
-    {
 		type: "input",
-        message: "What tests are included in your application, and what are examples on how to run them?",
-        name: "testYes",
-        when: (answers) => answers.test === "Yes"
+        message: "What tests would you like to include for your program?",
+        name: "test",
     },
     {
 		type: "input",
@@ -207,12 +189,12 @@ inquirer
         message: "What is your email address?",
         name: "email",
     },
-	])
+])
 
     // Generating README file
 	.then((answers) => {
 		const mdPageContent = generateMD(answers);
-
+        console.log(answers);
 		fs.writeFile("README.md", mdPageContent, (err) =>
 			err ? console.log(err) : console.log("Successfully created README.md!")
 		);
