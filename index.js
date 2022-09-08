@@ -1,9 +1,18 @@
+// ******************
+// TABLE OF CONTENTS
+// ******************
+// Importing packages
+// License badges
+// License notices
+// Markdown for README file
+// Inquirer prompts
+// README generation function
+
+
+
 // Include required packages
 const inquirer = require("inquirer");
 const fs = require("fs");
-
-// Generating current year for license
-const year = new Date().getFullYear();
 
 // License badges
 const licenseBadge = (license) => {
@@ -19,10 +28,10 @@ const licenseBadge = (license) => {
 }
 
 // Content of the license notice, depending on what license was selected 
-const licenseText = ( year, name, license, describe ) => {
+const licenseText = (name, license, describe) => {
     if (license === "Apache License v2.0") {
         return `
-    Copyright ${year} ${name}
+    Copyright 2022 ${name}
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -39,7 +48,7 @@ const licenseText = ( year, name, license, describe ) => {
     } else if (license === "GNU General Public License v3.0") {
         return `
     ${describe}
-    Copyright (C) ${year}  ${name}
+    Copyright (C) 2022  ${name}
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -55,7 +64,7 @@ const licenseText = ( year, name, license, describe ) => {
     along with this program.  If not, see [https://www.gnu.org/licenses/].`
     } else if (license === "MIT License") {
         return `
-    Copyright ${year} ${name}
+    Copyright 2022 ${name}
 
     Permission is hereby granted, free of charge, to any person obtaining 
     a copy of this software and associated documentation files 
@@ -83,7 +92,7 @@ const licenseText = ( year, name, license, describe ) => {
 
 // Include inquirer prompt "names" to perform substitutions in template literal
 // Content of the README file
-const generateMD = ({ year, name, license, title, test, describe, install, usage, contribute, github, email }) =>
+const generateMD = ({ name, license, title, test, describe, install, usage, contribute, github, email }) =>
 `# ${title}  ${licenseBadge(license)}
 
 ## Description
@@ -103,7 +112,7 @@ ${install}
 ${usage}
 
 ## License
-${licenseText(year, name, license, describe)}
+${licenseText(name, license, describe)}
 
 ## How to Contribute
 ${contribute}
