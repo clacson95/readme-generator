@@ -6,11 +6,14 @@
 This is a simple command-line application that generates README files. The motivation behind creating this application was to have a quick and easy way to create README files for future projects, and to save time with repetitive formatting.
 
 ## Table of Contents
+* [Screenshots](#screenshots)
 * [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
 * [How to Contribute](#how-to-contribute)
 * [Questions](#questions)
+
+## Screenshots
 
 ## Installation
 First, clone this repository by entering `git clone git@github.com:clacson95/readme-generator.git` into the terminal. 
