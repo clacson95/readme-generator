@@ -1,11 +1,10 @@
 # readme-generator  [![License: Apache](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-## [Video Walkthrough](https://watch.screencastify.com/v/MDi0NBbnUrr7bA2fxzYk)
-
 ## Description
 This is a simple command-line application that generates README files. The motivation behind creating this application was to have a quick and easy way to create README files for future projects, and to save time with repetitive formatting.
 
 ## Table of Contents
+* [Demo](#demo)
 * [Screenshots](#screenshots)
 * [Installation](#installation)
 * [Usage](#usage)
@@ -13,12 +12,18 @@ This is a simple command-line application that generates README files. The motiv
 * [How to Contribute](#how-to-contribute)
 * [Questions](#questions)
 
+## Demo
+
+### [Click here to watch a walkthrough video!](https://watch.screencastify.com/v/MDi0NBbnUrr7bA2fxzYk)
+
 ## Screenshots
 
 ## Installation
-First, clone this repository by entering `git clone git@github.com:clacson95/readme-generator.git` into the terminal. 
 
-Second, ensure `node.js` is installed. Third, ensure there is a `.gitignore` file (with `node_modules` and `.DS_Store` written inside) before installing any npm dependencies. Fourth, ensure your repository includes a `package.json` file. Create one by entering the `npm i -y` command in the terminal. Lastly, ensure the inquirer module is installed, using `npm i inquirer@^8.2.4` command in the terminal.
+1. Clone this repository by entering `git clone git@github.com:clacson95/readme-generator.git` into the terminal. 
+2. Ensure `node.js` is installed. 
+3. Ensure there is a `.gitignore` file (with `node_modules` and `.DS_Store` written inside) before installing any npm dependencies. 
+4. Ensure your repository includes a `package.json` file. Create one by entering the `npm i -y` command in the terminal. Lastly, ensure the inquirer module is installed, using `npm i inquirer@^8.2.4` command in the terminal.
 
 ## Usage
 Use the command `node index.js` to run the file and begin answering the prompts.
